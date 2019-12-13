@@ -81,13 +81,32 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <div>
-            time: {timeHelper.formatTime(this.state.totalTime)}
+      <div class="container-fluid">
+          <div class="row">
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+
+
+             <ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+                Split: <span class="font-weight-bold text-primary">elm name</span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">Current: <span>00:00:00</span></li>
+
+                </ul>
+
+
+                <div class="fixed-top">
+          <h1 class="display text-muted"> {timeHelper.formatTime(this.state.totalTime)}</h1>
           </div>
-          <button disabled={this.state.currentSplit !== null} onClick={() => {this.start()}}>Start</button>
-          <button disabled={this.state.currentSplit === null} onClick={() => {this.stop()}}>Stop</button>
-          <button disabled={this.state.currentSplit === null} onClick={() => {this.forwardSplit()}}>Split</button>
+          <button class="btn btn-success pt-2 pb-2 btn-floating" disabled={this.state.currentSplit !== null} onClick={() => {this.start()}}><i class="material-icons">
+          play_arrow
+</i></button>
+<button class="btn btn-danger pt-2 pb-2 btn-floating" disabled={this.state.currentSplit === null} onClick={() => {this.stop()}}><i class="material-icons">
+        pause
+</i></button>
+<button class="btn btn-warning pt-2 pb-2 btn-floating text-white"  disabled={this.state.currentSplit === null} onClick={() => {this.forwardSplit()}}><i class="material-icons">
+        replay
+</i></button>
           {this.state.splits.map((elm,i) => {
             return (
                 <div>
@@ -99,7 +118,7 @@ class App extends Component {
             )
           })
           }
-        </div>
+        </div></nav></div></div>
     );
   }
 }
