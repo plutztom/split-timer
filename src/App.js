@@ -1,75 +1,21 @@
 import React, {Component} from 'react';
 import './App.css';
 import timeHelper from './helpers/timeHelper.js';
+import RunService from './helpers/RunService';
 
 class App extends Component {
   state = {
     totalTime: 0,
     currentSplit: null,
-    splits:  [
-      {
-        name: 'Wind Waker',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Forsaken Fortress 1',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Empty Bottle',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Enter DRC',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Grappling Hook',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Deku Leaf',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Quiver',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Forsaken Fortress 2',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Barrier Skip',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Puppet Ganon',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Bomb Skip',
-        best: '--',
-        current: '--'
-      },
-      {
-        name: 'Ganon',
-        best: '--',
-        current: '--'
-      }
-    ]
+    splits: []
   };
-
+  componentDidMount() {
+    RunService.GetRunDefinition(1).then(res => {
+      this.setState({
+        splits: res
+      })
+    })
+  }
 
   componentDidUpdate() {
     requestAnimationFrame(this.tick.bind(this));
